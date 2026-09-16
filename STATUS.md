@@ -1,6 +1,6 @@
 # qstudying-public — status
 
-_Snapshot: 2026-08-28. Refreshed weekly (Fridays) during the
+_Snapshot: 2026-08-28. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 Release-narrative status of the Lean4 focus-area syllabus. Companion to the

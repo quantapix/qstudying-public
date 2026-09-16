@@ -14,7 +14,7 @@ proof yet *governs* an operation, and the local consumer only visualizes
 them. It is a deeper exposition of the **method**, the third axis of one
 method — not a product, a service, or a feature.
 
-A weekly-refreshed window into the working syllabus that runs alongside the
+A regularly refreshed window into the working syllabus that runs alongside the
 private working repository. Rewritten 2026-06-10 under a three-axis charter:
 each area is tagged to the workstream it serves — **[A]** cross-axis
 representation research (how to *represent* the kernel shape, the
@@ -391,7 +391,7 @@ comes from; see [STATUS](./STATUS.md).
 
 ## Cadence
 
-Refreshed weekly from the private working tree. Re-ranking, new threads, and
+Refreshed per release run from the private working tree. Re-ranking, new threads, and
 dropped items are committed as ordinary diffs — the commit log is the change
 record.
 
