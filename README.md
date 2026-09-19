@@ -118,7 +118,8 @@ the witness-tower depth in the legal-domain example proof coming down.
 
 *Metaprogramming in Lean 4* Ch.3 (Expressions) → Ch.4 (MetaM) → Ch.7
 (Elaboration) → Ch.8 (Embedding DSLs By Elaboration) → Ch.9 (Tactics). The
-book is pinned to v4.17.0-rc1 (~12 minors behind the kernels) — trust it for
+book is pinned to v4.17.0-rc1, sixteen minor releases behind the kernels'
+current pin and falling further behind with every bump — trust it for
 *shape*, verify every Meta/Elab signature against current source or Zulip.
 
 The strategic move: a `facts%` macro / custom command that consumes a
@@ -372,11 +373,12 @@ comes from; see [STATUS](./STATUS.md).
   the set of operational domain concepts it formalizes is extracted from the
   git glossary over a cited neighborhood, so coverage is a real fraction over
   a real ground-truth set rather than a hand-maintained estimate. The emit
-  behind that fraction is, as of this refresh, verified current against the
-  kernel it describes rather than merely against the commit graph — so the
-  fraction is published this cycle for the first time: **12 of 22** concepts
-  covered, all at the strongest tier, none refuted. It is a real fraction over
-  a real ground-truth set, and it is expected to move both ways.
+  behind that fraction is checked for currency against the kernel it
+  describes, not only against the commit graph, and it reads current at this
+  refresh: **12 of 22** concepts covered, all at the strongest tier, none
+  refuted. The fraction has been unchanged since it was first published on
+  2026-08-28. It is a real fraction over a real ground-truth set, and it is
+  expected to move both ways.
 
 ## Skip / deprioritise
 

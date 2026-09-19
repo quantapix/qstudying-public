@@ -465,9 +465,9 @@ question**, and it fails in the direction that looks like a real finding.
 
 The producer and its test now run the same code rather than two copies of it.
 
-With that in place the flag reports current, the card reads healthy for the first
-time since 2026-07-25, and the coverage fraction above is published — the first
-one this file has been willing to print since the flag started telling the truth.
+With that in place the flag reports current. The card first read healthy again on
+2026-08-28, after reading stale since 2026-07-25, and the coverage fraction above
+has been published at every refresh since.
 The previous snapshot's drift count is **retired, not improved**: it was the
 output of the defective instrument, and restating it smaller would have implied a
 trend that the number could not carry.
@@ -563,8 +563,6 @@ mode the suite exists to name.
 
 ---
 
-Rest of file unchanged.
-
 ## Cadence
 Re-rankings, new threads, and dropped items land as ordinary diffs; the commit
 log is the change record.
@@ -586,8 +584,8 @@ log is the change record.
   says which one it publishes.
 - Every falsifiable claim on this page is re-derived against the working tree at
   each refresh, not carried forward because it was published last week. Four
-  claims were corrected this cycle on that basis, each of them true when it was
-  written.
+  claims were corrected on that basis at the 2026-08-28 refresh and three more
+  at this one, each of them true when it was written.
 
 ## Contact
 [github.com/quantapix](https://github.com/quantapix) — open an issue on any repo
