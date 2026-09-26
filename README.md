@@ -26,8 +26,8 @@ paths (Topology, MeasureTheory, Analysis, CategoryTheory) remain deliberately
 out of scope.
 
 Toolchain pin (all three kernels, three-way lockstep):
-`leanprover/lean4:v4.33.0` (bumped from v4.32.0 on 2026-08-15; the prior
-v4.31.0 → v4.32.0 bump was 2026-07-14). Any bump moves all three kernels
+`leanprover/lean4:v4.34.0` (bumped from v4.33.0 on 2026-09-22; the prior
+v4.32.0 → v4.33.0 bump was 2026-08-15). Any bump moves all three kernels
 in lockstep and replays each kernel's example proofs. "One commit" is not
 always achievable — when the three kernels are each held by a separate
 concurrent session, the bump lands as one commit per kernel, in lockstep
@@ -79,7 +79,7 @@ why opaque predicates must be `Prop`-valued (not `Bool`), and why
 representation guide's kernel-shape chapter starts here.
 
 Re-validate against PR #12973 — "makes theorems opaque in almost all
-ways, including in the kernel." With all three kernels now pinned to v4.33.0,
+ways, including in the kernel." With all three kernels now pinned to v4.34.0,
 a green `lake build` of each axiom set is the load-bearing post-bump
 confirmation that `Prop`-valued opaque predicates and `noncomputable`
 witnesses still reduce in def-eq the way the proofs assume. All three kernels

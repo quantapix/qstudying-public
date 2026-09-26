@@ -1,6 +1,7 @@
 # qstudying-public — status
 
-_Snapshot: 2026-08-28. Refreshed per release run during the
+_Snapshot: 2026-08-28 (adversarial figures); toolchain and method notes
+refreshed 2026-09-26. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 Release-narrative status of the Lean4 focus-area syllabus. Companion to the
@@ -37,8 +38,8 @@ one per domain, never sharing ground truth:
   structurally-synthetic snapshots, never real-tree data. Its consumer is
   local-only and only visualizes; nothing here is a deployed surface.
 
-All three pin the same Lean toolchain (`leanprover/lean4:v4.33.0`, three-way
-lockstep since the 2026-08-15 bump; bumps move all three and replay each
+All three pin the same Lean toolchain (`leanprover/lean4:v4.34.0`, three-way
+lockstep since the 2026-09-22 bump; bumps move all three and replay each
 kernel's example proofs).
 
 ## Adversarial standing
@@ -373,6 +374,19 @@ The same discipline applies to the witnesses: a proof-of-fire arm can be
 simultaneously correct — it fails — and wrong, because it fails for a different
 reason than the one it was written for. Run the sabotage and read *why* it went
 red, not just that it did.
+
+The blind adversarial cells are now launched from outside the repository. An
+agent started inside the tree is handed the project's instruction files and
+its memory index before it reads a single prompt. That is a leak a written
+rule can declare but not prevent. A paired probe settles it: the same cell
+launched inside the tree carried both kinds of material, and launched
+outside, neither. A launch that has to fall back to the in-tree path records
+the leak as declared, not cured.
+
+Frozen verdicts are no longer re-judged in place either. A later grader's
+reading of a frozen file is appended as a separate record. That record
+either confirms the original outcome or contradicts it, and the original
+verdict's bytes are never rewritten.
 
 ## A verdict that is a function of where the shell was standing
 The lane's independence audit convicted a participant this cycle for reading a
