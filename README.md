@@ -315,10 +315,11 @@ committed alongside the constructive proof:
   window commit leaks to a path outside its own working-tree root: the
   canonical bypass an editor-level guard structurally cannot see.
 
-Additional operational-invariant theorems extend the same surface — a
+Additional operational-invariant theorems extend the same surface: a
 substrate layer beneath git (files, processes, exit codes), a relational
-ledger's append/replay/adoption semantics, and the governance gate described
-in [STATUS](./STATUS.md). The hierarchical predicate decomposition already
+ledger's append/replay/adoption semantics, and a publish-clearance coverage
+model. That model is proved over synthetic fixtures; the live decision step
+built on it is described in [STATUS](./STATUS.md). The hierarchical predicate decomposition already
 used on the textual and numerical axes now extends to the operational kernel
 — the same hierarchy/leaf-extraction method, applied inward. The syllabus
 enumerates the architectural surface only; the axis's memory- and

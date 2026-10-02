@@ -1,7 +1,8 @@
 # qstudying-public — status
 
-_Snapshot: 2026-08-28 (adversarial figures); toolchain and method notes
-refreshed 2026-09-26. Refreshed per release run during the
+_Snapshot: adversarial figures as of the most recent folded round (no round
+has run since 2026-08-28; this refresh moves them from the second-to-last
+fold to the last one); toolchain and method notes refreshed 2026-10-02. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 Release-narrative status of the Lean4 focus-area syllabus. Companion to the
@@ -45,19 +46,27 @@ kernel's example proofs).
 ## Adversarial standing
 Numbers as of this snapshot, all machine-checked by the build:
 
-- **105** theorems proved across the operational targets; **77** on the
+- **106** theorems proved across the operational targets; **78** on the
   domain-coverage numerator.
-- **65** adversarial rounds; **357** attack probes thrown, **12** landed,
-  **11** adjudication items open.
+- **66** adversarial rounds; **363** attack probes thrown; **12** open items
+  still awaiting an answer.
 - **18 of 22** numerator cells re-certified under the closed adversarial
-  contract, each holding zero landed attacks against a fresh, independent
-  adversary.
+  contract, each holding zero adversarially-scored builds against a fresh,
+  independent adversary.
+
+The adversarial-damage figure this page previously published under the word
+"landed" is withheld this refresh. The instrument that produces it counts
+build entries scored for the adversarial side, once per round, so a fixture
+rebuilt in several rounds counts several times. The judge that adjudicates
+each round uses the same word for a narrower event, and on the most recent
+round the two readings disagree. This page names a basis before it publishes
+a count.
 - **12 of 22** domain concepts covered, all at the strongest tier, none refuted.
 
 **State the population in the same sentence as the count, so: these figures are a
 sum over the thirty-one on-roster cells that carry a standing record, each taken
 at its own last-folded round rather than at a common cut-off.** A round whose
-adjudication is still gated is in none of them. Four further families are held
+adjudication is still gated is in none of them. Six further families are held
 off the roster until each can arrive whole — proved theorems *and* full
 adversarial standing in one change — and they are excluded in **both** directions:
 their theorem counts are absent here too. Read every figure over that population,
@@ -70,14 +79,21 @@ Earlier rounds label an item's attribution from the judge's verdict; later round
 derive it. The two disagree materially where they overlap. **A cleared ruling is
 not a shipped mechanism**, and a figure produced across the seam should say so.
 
-Two of these figures rose sharply — landed attacks from two to twelve, open items
-from zero to eleven. **That rise mixes two different things and this file will not
-pretend otherwise.** Part of it is the population cure this file described last
-cycle finally reaching the projection: the fold had been seeded from an optional
-field, so any round record that omitted it was silently subtracted while staying
-schema-valid. Part of it is genuine new damage from two rounds on a newly-worked
-records-substrate family. The instrument cannot separate the two, so the honest
-statement is the total plus the ambiguity, not an attribution.
+Two of these figures rose sharply over the cycle that ended at the last folded
+round: the adversarially-scored build count, and open items from zero to twelve.
+**That rise mixes two different things and this file will not pretend
+otherwise.** Part of it is the population cure this file described earlier
+reaching the projection: the fold had been seeded from an optional field, so any
+round record that omitted it was silently subtracted while staying schema-valid.
+Part of it is genuine new damage from three rounds on a newly-worked
+records-substrate family, and nearly all of the remaining growth comes from one
+cell. The instrument cannot separate the two, so the honest statement is the
+total plus the ambiguity, not an attribution.
+
+The previous refresh published the figures from the second of those three
+rounds, not the third. Both were folded on the same day, and the page's date
+stamp could not tell them apart. **A date is not a coordinate when two folds
+share it.** The header now names the fold.
 
 The certification figure deserves the sharpest note, because it went down and
 because a page like this one is exactly where a falling number gets quietly
@@ -314,6 +330,53 @@ carries an arm that reds if the live file changes at all. A gate that lives in
 the writer is a gate the writer's callers can walk around; the gate has to live
 where the invocation is made.
 
+## A decision step that exists is not coverage that holds
+
+The operational kernel models publish-time clearance: every public push that a
+clearance gate covers must be preceded by a grant from that gate's sole grantor.
+The model is proved over synthetic fixtures. Until this cycle, the live side of
+it could only *extract* facts from the real push record and report whether they
+were checkable. "Checkable" is not "covered", and a publish gate keyed on the
+extractor's exit status would have passed every uncovered push while reading as
+a coverage gate. It was deliberately not wired.
+
+A decision step now exists. It passes only when the proof assistant elaborates a
+generated coverage proof over the live facts. It names each uncovered payload,
+gate and clause when coverage fails, and it distinguishes "the kernel refused a
+generated green" and "not yet verifiable" as separate outcomes. Its witness
+drives each outcome, including a sabotaged generator. A failing reading is the
+extractor's diagnosis, not a kernel-checked witness of an uncovered push,
+because the negative side has no closed form yet. The step is not yet wired into
+the push path it is meant to gate, and this page makes no coverage claim on the
+strength of it existing.
+
+The same cycle produced a second instance of the class: a model-floor check in
+the adversarial lane had been grading the *configured* model, not the model the
+participants actually ran. **A gate named for a property can read a proxy for it
+for months**, and both cures move the measurement to the point where the named
+thing exists: a Lean-elaborated proof, and the transcript.
+
+## An absence read is a function of the host's configuration
+
+Two of this cycle's cures were the same defect. A no-write assertion read the
+repository's status in its default form. That form does not list a new file
+inside a directory that is already untracked, and under one common configuration
+it lists no untracked file at all. So the assertion "nothing was written" held on
+some machines and not others for the same write. The read now pins the form that
+enumerates every untracked path, and a lint refuses any unpinned status read in
+the lane's scripts.
+
+The second: a recognizer for transcript-read channels matched three spellings of
+where a participant's transcript lives, and missed the fourth, which is where an
+out-of-tree participant's own transcript lands. Sibling participants could read
+each other through it on every axis. It is closed once, in the shared component.
+
+The witness grains are now written down as a closed set, each with a committed
+known-bad: two spellings of one path, a symlinked directory, a file versus an
+entry inside it, a second author or instance, and an in-tree versus an
+out-of-tree copy. Three of the five are thinly witnessed today, and the page
+says so rather than counting them as covered.
+
 ## An archive is evidence only once something checks it is there
 The independence audit reads raw agent transcripts, and those decay within days,
 so verdicts are frozen alongside the round they judge and the raw evidence is
@@ -359,6 +422,14 @@ by construction, an answer key — exactly the material a future adversary must
 not have seen — so committing it would poison the next round's independence
 while looking like good record-keeping. Round records stay committed and
 append-only; the archive holds evidence only.
+
+One consequence of freezing verdicts beside their rounds: when the grader
+changes, every frozen verdict it produced is marked untrusted against the live
+grader's own hash. The verdict is not re-judged in place. Discharge requires a
+re-grade record from the current grader that matches the frozen file byte for
+byte. That batch re-grade has not yet run, so the independence verdicts behind
+this page's adversarial figures are currently all in the marked state. They are
+not evidence for the tiers they once supported until it does.
 
 ## Instruments that check themselves before they report
 A small pattern, stated because it is cheap and it has now caught three real
@@ -598,8 +669,10 @@ log is the change record.
   says which one it publishes.
 - Every falsifiable claim on this page is re-derived against the working tree at
   each refresh, not carried forward because it was published last week. Four
-  claims were corrected on that basis at the 2026-08-28 refresh and three more
-  at this one, each of them true when it was written.
+  claims were corrected on that basis at the 2026-08-28 refresh, three at the
+  next, and at this one the adversarial block itself, which had been published
+  one fold behind, along with a cross-reference from the README to a section
+  that did not exist.
 
 ## Contact
 [github.com/quantapix](https://github.com/quantapix) — open an issue on any repo
