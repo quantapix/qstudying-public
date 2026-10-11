@@ -27,12 +27,12 @@ out of scope.
 
 Toolchain pin (all three kernels, three-way lockstep):
 `leanprover/lean4:v4.34.0` (bumped from v4.33.0 on 2026-09-22; the prior
-v4.32.0 → v4.33.0 bump was 2026-08-15). Any bump moves all three kernels
-in lockstep and replays each kernel's example proofs. "One commit" is not
-always achievable — when the three kernels are each held by a separate
-concurrent session, the bump lands as one commit per kernel, in lockstep
-in time, each verified independently; the deviation is recorded rather
-than papered over.
+v4.32.0 → v4.33.0 bump was 2026-08-15). Any bump moves all three kernels in lockstep and replays each kernel's
+example proofs. Since 2026-10-04 a bump lands as a single commit covering
+all three pins. Before that, when the three kernels were each held by a
+separate concurrent session, it landed as one commit per kernel, in
+lockstep in time, each verified independently, and the deviation was
+recorded rather than papered over.
 
 One non-obvious hazard, stated here because it voided real work: the pin
 is read from the *current directory*. A bare compiler invocation from a

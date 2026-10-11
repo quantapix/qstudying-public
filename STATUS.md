@@ -1,30 +1,29 @@
 # qstudying-public — status
 
-_Snapshot: adversarial figures as of the most recent folded round (no round
-has run since 2026-08-28; this refresh moves them from the second-to-last
-fold to the last one); toolchain and method notes refreshed 2026-10-02. Refreshed per release run during the
+_Snapshot: adversarial figures as of the most recent fold on any cell inside
+them, 2026-08-28. Rounds have run and folded since, all on families held off
+the roster, so none of them enters the figures below. Toolchain and method
+notes refreshed 2026-10-11. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 Release-narrative status of the Lean4 focus-area syllabus. Companion to the
 [README](./README.md), not a substitute.
 
 ## Overall
-The scoreboard moved this cycle, after four cycles of not moving. Most of it
-moved the wrong way, which is the point of publishing it.
+The scoreboard did not move this cycle, and that does not mean nothing ran.
+Every adversarial round in the cycle ran on a family held off the roster, and
+off-roster families are excluded from every figure on this page in both
+directions. The numbers below are therefore the same numbers as last refresh.
+They describe the same population, folded at the same rounds.
 
-Two figures this file withheld last cycle now exist, because the fold that
-produces them was refused by two consecutive breached rounds and has since been
-allowed to run. Both are worse than the numbers they replace. A third figure —
-the certification badge — **fell for the first time**, from twenty of
-twenty-two to eighteen. It fell because a newly-worked family took real
-adversarial damage, and because the badge is scored cumulatively: a cell that
-ever had something land is disqualified permanently, repair or no repair. The
-rule that makes the badge conservative is the same rule that makes it fall.
+Two things did change. The count of families held off the roster went from six
+to ten. And the lane gained two gates: one that refuses to promote a result
+once the statement it proves has moved underneath it, and one that closes the
+last inbound channel to a blind participant. Both are described below.
 
-One figure moved the right way, and it is the one that has been stuck longest:
-the freshness flag behind the public card now reports current, so the card reads
-healthy for the first time since late July, and the coverage fraction is
-publishable again.
+Last cycle's movement stands. The certification badge fell from twenty of
+twenty-two to eighteen and nothing this cycle reversed it, by the same
+cumulative rule.
 
 ## The three axes
 The architecture the syllabus is selected *for* runs in three parallel kernels,
@@ -66,8 +65,8 @@ a count.
 **State the population in the same sentence as the count, so: these figures are a
 sum over the thirty-one on-roster cells that carry a standing record, each taken
 at its own last-folded round rather than at a common cut-off.** A round whose
-adjudication is still gated is in none of them. Six further families are held
-off the roster until each can arrive whole — proved theorems *and* full
+adjudication is still gated is in none of them. Ten further families are held
+off the roster until each can arrive whole (four were added this cycle) — proved theorems *and* full
 adversarial standing in one change — and they are excluded in **both** directions:
 their theorem counts are absent here too. Read every figure over that population,
 never as a statement about the whole tree.
@@ -330,6 +329,35 @@ carries an arm that reds if the live file changes at all. A gate that lives in
 the writer is a gate the writer's callers can walk around; the gate has to live
 where the invocation is made.
 
+## A statement pin has to see what the statement depends on
+The step that folds a round's results into standing now refuses while any
+statement it holds has moved and no build in a later round names it again.
+There is no re-pin verb.
+
+What to fingerprint was the whole design question. The obvious choice, a hash
+of the theorem's elaborated type, is wrong. A type names the definitions it
+uses only by their constant names, so changing a definition's body underneath
+an unchanged theorem leaves the type hash unchanged. The fingerprint is taken
+instead over the statement's local closure: its type, the bodies of the
+definitions it reaches, and the constructors and recursors of the inductive
+types it reaches. Proofs are never included, and binder names and annotations
+are stripped. It stays byte-stable across a forced rebuild of the modules it
+covers.
+
+The clock came from the ruling's stated costs, not its rule sentence. The rule
+alone left open whether the round that introduces a change may also
+re-attest it. The ruling's own words, that a change "trips it by design",
+settle the question. A same-round re-attestation would mean the gate never
+trips, so a change to the kernel now costs its round one refused fold, and the
+next round re-attests. **Read a ruling's declared costs as part of its text.**
+
+Two limits are stated rather than hidden. A statement that vanishes is
+reported, not gated, because renames are routine and gating them would wedge a
+fold for good. And the gate's scope is a population: 660 of 712 statement
+references resolve today. The remainder are attack-side, retired, free-text or
+ambiguous names. The baseline attests the tree as of the gate's first day, one
+record per example. It says nothing about drift before that.
+
 ## A decision step that exists is not coverage that holds
 
 The operational kernel models publish-time clearance: every public push that a
@@ -454,6 +482,14 @@ launched inside the tree carried both kinds of material, and launched
 outside, neither. A launch that has to fall back to the in-tree path records
 the leak as declared, not cured.
 
+This cycle closed the remaining inbound channel. A participant launched
+outside the tree could still receive a message queued by a peer, and it could
+still load tool capabilities the brief did not grant. Both are now disallowed
+on every participant. The harness's queue record is read from the transcript
+by its shape, so a delivered message convicts at spawn and again before the
+audit hands off. The witness reds against the launcher as it stood before the
+cure.
+
 Frozen verdicts are no longer re-judged in place either. A later grader's
 reading of a frozen file is appended as a separate record. That record
 either confirms the original outcome or contradicts it, and the original
@@ -501,6 +537,66 @@ compliant recipe attached — did not prevent the twelfth instance of the
 behaviour it was written to prevent, and was not what convicted anyway.
 **Briefing has now been measured as not being the lever.** That is a result
 about instructions, not about the participant.
+
+Three more instances of the same class were cured this cycle, all in the
+grader that every kernel shares:
+
+- The text of a stream-editor substitution was read as a path argument. Its
+  delimiters normalised to the filesystem root, and a recursive search later in
+  the same command supplied the "recursive" signal. A compliant command that
+  searched only the participant's own directory was convicted as a sweep from
+  root.
+- A participant re-read the harness's own overflow file for one of its own
+  permitted commands. The grader convicted this as a read of another
+  participant's transcript. The carve for "its own" was keyed on each call's
+  recorded working directory, which the participant had legitimately changed,
+  while the harness fixes the participant's project directory at launch. The
+  carve also reproduced only two of the three characters the harness rewrites
+  when it names that directory. Keying on the launch location, with the
+  harness's full naming rule, also closed a false negative the per-call key had
+  admitted: a participant that stepped into a sibling's directory could have
+  claimed the sibling's overflow file as its own. A narrower pattern was
+  considered and not taken, because it would have stopped convicting reads of a
+  sibling's file.
+- Changing into an ancestor directory and then searching a relative path into
+  the participant's own output convicted the ancestor as the sweep root.
+
+The previous section said the audit is not re-run to get a different answer,
+and that still holds, so how these were resolved needs to be stated
+precisely. Each defect was reproduced against the real grader. The cure was
+regression-measured with known-bad and known-good cases. An operator ruled the
+regrade. The frozen archive was then replayed through the cured grader, and
+the result was appended as a superseding record beside the original verdict,
+whose bytes are unchanged. Two rounds this cycle went from a breach verdict to
+a clean or review verdict that way and were then folded. None of them is in
+this page's figures, because both are on a family held off the roster.
+
+The rule that keeps recurring: **key a channel rule on the channel's object,
+and pair every known-bad with a known-good.** A rule keyed on how the access
+was spelled convicts the careful caller.
+
+Participants are now also briefed never to read an overflow file and to re-run
+the command more narrowly instead. That instruction is right under either
+reading of the rule it works around.
+
+## A field with a reader and no writer is a cert that can only void
+Frozen independence verdicts carry a stamp of the set of channels they were
+graded against, so that a later change to that set can scope a certificate
+rather than discard it. The shared reader had an arm for this scoping. No
+kernel's writer had ever produced the per-channel readings it needed, so every
+stamped certificate would have voided at the next channel-set change, silently
+and by default. The freeze step now writes those readings. Its witness is
+coupled to the real reader instead of a copy, and the stamp was executed on a
+copy of a real verdict before landing.
+
+The general form: **a field defined by its consumer and written by no producer
+is inert, and an inert field fails in whatever direction its default points.**
+
+A related roster decision was taken this cycle. The operational statement
+graph, a generated emit that carries each theorem's status and documentation,
+is now on the list of material a blind participant may not read. It is an
+answer key. Measured before the change: none of the eight participant
+transcripts in the affected rounds had read it.
 
 ## The cost of the trust
 One finding from a review of the lane's own daily operation belongs here because
@@ -556,6 +652,12 @@ has been published at every refresh since.
 The previous snapshot's drift count is **retired, not improved**: it was the
 output of the defective instrument, and restating it smaller would have implied a
 trend that the number could not carry.
+
+One further step this cycle: the content digest is now the stamp of record,
+and the revision the snapshot was taken at is a note that decides nothing. A
+coverage emit is refused as dead only when it carries no digest at all. The
+reader no longer consults revision ancestry, which is the question the first
+defective version asked.
 
 ## Three instruments wrong toward a false clean, on one round
 The first independently-audited round on a new family found three lane
@@ -670,9 +772,12 @@ log is the change record.
 - Every falsifiable claim on this page is re-derived against the working tree at
   each refresh, not carried forward because it was published last week. Four
   claims were corrected on that basis at the 2026-08-28 refresh, three at the
-  next, and at this one the adversarial block itself, which had been published
-  one fold behind, along with a cross-reference from the README to a section
-  that did not exist.
+  next, at the one after, the adversarial block itself, which had been
+  published one fold behind, along with a cross-reference from the README to
+  a section that did not exist. At this one, three: the header's statement
+  that no round had run since 2026-08-28 (rounds had run and folded, all off
+  the roster), the held-off family count (six, now ten), and the README's
+  account of how a toolchain bump lands.
 
 ## Contact
 [github.com/quantapix](https://github.com/quantapix) — open an issue on any repo
