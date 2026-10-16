@@ -3,27 +3,27 @@
 _Snapshot: adversarial figures as of the most recent fold on any cell inside
 them, 2026-08-28. Rounds have run and folded since, all on families held off
 the roster, so none of them enters the figures below. Toolchain and method
-notes refreshed 2026-10-11. Refreshed per release run during the
+notes refreshed 2026-10-16. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 Release-narrative status of the Lean4 focus-area syllabus. Companion to the
 [README](./README.md), not a substitute.
 
 ## Overall
-The scoreboard did not move this cycle, and that does not mean nothing ran.
-Every adversarial round in the cycle ran on a family held off the roster, and
-off-roster families are excluded from every figure on this page in both
-directions. The numbers below are therefore the same numbers as last refresh.
-They describe the same population, folded at the same rounds.
+The scoreboard did not move this cycle. Three adversarial rounds ran and
+folded. Each was the first round on its cell, and all three cells are held off
+the roster, so none of them enters a figure on this page. The count of
+families held off the roster is unchanged at ten.
 
-Two things did change. The count of families held off the roster went from six
-to ten. And the lane gained two gates: one that refuses to promote a result
-once the statement it proves has moved underneath it, and one that closes the
-last inbound channel to a blind participant. Both are described below.
+The changes were on the instrument side. The axis now keeps a written table of
+what each kind of change does to the evidence already on file. A check that
+could not run has stopped reporting that everything it checked was fine. Two
+claims this page had carried for weeks were also re-measured: one stands, now
+with its population stated, and one turned out to be false and is corrected
+below.
 
-Last cycle's movement stands. The certification badge fell from twenty of
-twenty-two to eighteen and nothing this cycle reversed it, by the same
-cumulative rule.
+The certification badge fell from twenty of twenty-two to eighteen in an
+earlier cycle. Under the same cumulative rule, nothing since has reversed it.
 
 ## The three axes
 The architecture the syllabus is selected *for* runs in three parallel kernels,
@@ -66,7 +66,7 @@ a count.
 sum over the thirty-one on-roster cells that carry a standing record, each taken
 at its own last-folded round rather than at a common cut-off.** A round whose
 adjudication is still gated is in none of them. Ten further families are held
-off the roster until each can arrive whole (four were added this cycle) — proved theorems *and* full
+off the roster until each can arrive whole (the same ten as at the last refresh) — proved theorems *and* full
 adversarial standing in one change — and they are excluded in **both** directions:
 their theorem counts are absent here too. Read every figure over that population,
 never as a statement about the whole tree.
@@ -143,10 +143,19 @@ deleting it. The round after that, seven more conceded findings were re-keyed
 the same way and retired together, one of them completing the full
 observe-repair-retire cycle inside a single round.
 
-**None of that is in the numbers above.** That round breached, so the fold
-refused, and seven retirements exist in the tree and in no metric until the next
-clean round. That is the honest cost of a breach: it withholds the number, not
-the work.
+**None of that is in the numbers above**, for two reasons. An earlier version
+of this page gave only the first. That round breached, so its fold refused. The
+next round on the same cell did not breach, and it folded on 2026-08-16, which
+is when the retirements entered that cell's standing record. The second
+reason: the cell belongs to a family held off this page's roster, so its
+retirements, like its damage, enter none of the figures here at any fold.
+
+Earlier refreshes said the seven retirements were in no metric "until the next
+clean round". That was true when it was written. It stopped being true twelve
+days before this page's own snapshot date, and every refresh since then carried
+it forward unchecked. It was caught by re-measuring the claim against the cell's
+standing history, not by any gate: every gate on this page reads tokens, and a
+sentence that has gone stale contains none of them.
 
 ## Enumerate by the environment — necessary, and not sufficient
 The axiom-floor probe was rebuilt to enumerate every constant the example's
@@ -405,6 +414,15 @@ entry inside it, a second author or instance, and an in-tree versus an
 out-of-tree copy. Three of the five are thinly witnessed today, and the page
 says so rather than counting them as covered.
 
+A third instance this cycle. At session start, the live check publishes the
+axis's kernel-verified facts. It can fall back from its primary publisher to an
+older one, and the fallback rate is the number a pending migration of that
+publisher is measured on. The only record of a fallback used to be an error
+line that the sole automatic caller discards, so a fallback rate counted from
+the records was zero by construction. Each publish now records which publisher
+served it, per machine. The witness drives every outcome, including a mutant
+that attributes a failed scan to the wrong publisher.
+
 ## An archive is evidence only once something checks it is there
 The independence audit reads raw agent transcripts, and those decay within days,
 so verdicts are frozen alongside the round they judge and the raw evidence is
@@ -443,7 +461,7 @@ suspect rounds, it declares **zero losses** — every record that had been count
 missing was present on a peer machine, exactly as the earlier correction
 predicted. The rule survives the cure and is the reason to keep it stated: a
 declared loss should be read as *absent here* until a peer location has been
-checked.
+checked. The daily sentinel that reads those archives now runs on both machines, each over its own rounds, because archives are split by machine and one sentinel would surveil only the rounds that ran where it runs.
 
 The archive itself still never enters the repository. A committed transcript is,
 by construction, an answer key — exactly the material a future adversary must
@@ -455,9 +473,55 @@ One consequence of freezing verdicts beside their rounds: when the grader
 changes, every frozen verdict it produced is marked untrusted against the live
 grader's own hash. The verdict is not re-judged in place. Discharge requires a
 re-grade record from the current grader that matches the frozen file byte for
-byte. That batch re-grade has not yet run, so the independence verdicts behind
-this page's adversarial figures are currently all in the marked state. They are
-not evidence for the tiers they once supported until it does.
+byte. That batch re-grade has not run. The step that would write the re-grade
+records is not yet built on this axis, and no re-grade record exists anywhere
+in its tree. Measured this refresh over every frozen independence verdict in
+the tree, 46 verdicts across nine example cells: 36 read untrusted against the
+live grader, 10 predate the grader stamp and carry no grader identity, and none
+reads trusted. The on-roster cells hold three of those 46, all untrusted. None
+of them is evidence for the tier it once supported until a re-grade discharges
+it.
+
+## What a change does to the evidence already on file
+
+Every kind of change that can land under a proved result now has a row in one
+table, and each row is classed one of four ways. The evidence either
+**carries** over unchanged, has to be **re-attested** by a later round, goes to
+**review**, or is **void**. Some examples: a moved definition under a held
+statement re-attests. A moved grader re-attests, and that is the row the
+re-grade in the previous section depends on. A toolchain bump re-attests. A
+breach voids. A kind with no instance on this axis is marked that way with a
+stated reason. The table's lint refuses that mark on any other row, so "not
+applicable" cannot be used to skip a row that does apply.
+
+Two properties are deliberate. The table reads the axis's existing instruments
+and adds no gate of its own, so it has no way to disagree with them. It also
+classifies kinds of change without scheduling anything: the order in which
+staged work re-lands is written into it as a dependency, not as a plan.
+
+In the week the table landed, the axis's lint for unwired scripts flagged the
+table's own lint, because nothing except its own test called it. The ruled
+cure for that class is a header declaring the script an operator verb, not a
+caller invented to satisfy the lint. Measured after the fix: 48 scripts in the
+population, three declared, zero findings.
+
+## A check that could not run reported OK
+
+A shape check for conceded findings graded each artifact by whether it
+elaborates green. On a checkout with no compiled package, every artifact failed
+to elaborate on a missing module, and the check printed OK with nothing
+elaborating. Run against a built package, the same check found ten of eleven
+artifacts in one cell mis-shaped. The step that closes a round calls this
+check, so it would have passed a mis-shaped round on any unbuilt tree.
+
+The check now confirms that its imports are built before it elaborates
+anything, through the same build-precondition component the axiom audit uses.
+If they are not built, it exits as could-not-look: never OK, and never a
+verdict. Its new witness refuses an artifact that imports a module that does
+not exist, and the previous version of the check fails that witness.
+
+**A predicate that cannot be evaluated is not a predicate that holds.** This
+page has stated the rule before. This instance was the permissive direction.
 
 ## Instruments that check themselves before they report
 A small pattern, stated because it is cheap and it has now caught three real
@@ -774,10 +838,15 @@ log is the change record.
   claims were corrected on that basis at the 2026-08-28 refresh, three at the
   next, at the one after, the adversarial block itself, which had been
   published one fold behind, along with a cross-reference from the README to
-  a section that did not exist. At this one, three: the header's statement
-  that no round had run since 2026-08-28 (rounds had run and folded, all off
-  the roster), the held-off family count (six, now ten), and the README's
-  account of how a toolchain bump lands.
+  a section that did not exist. At the 2026-10-11 refresh, three corrections: the header's statement that no
+  round had run since 2026-08-28 (rounds had run and folded, all off the roster),
+  the held-off family count (six, now ten), and the README's account of how a
+  toolchain bump lands. At this one, two: the statement that seven retirements
+  were in no metric until the next clean round (they entered their cell's
+  standing at its next fold, on 2026-08-16, and that cell is off the roster), and
+  a held-off qualifier that described the previous cycle as this one. A third
+  carried claim, that the verdict re-grade has not run, was re-measured and
+  stands. It now carries its population.
 
 ## Contact
 [github.com/quantapix](https://github.com/quantapix) — open an issue on any repo
