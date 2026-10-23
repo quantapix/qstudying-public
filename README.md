@@ -26,13 +26,14 @@ paths (Topology, MeasureTheory, Analysis, CategoryTheory) remain deliberately
 out of scope.
 
 Toolchain pin (all three kernels, three-way lockstep):
-`leanprover/lean4:v4.34.0` (bumped from v4.33.0 on 2026-09-22; the prior
-v4.32.0 → v4.33.0 bump was 2026-08-15). Any bump moves all three kernels in lockstep and replays each kernel's
-example proofs. Since 2026-10-04 a bump lands as a single commit covering
-all three pins. Before that, when the three kernels were each held by a
-separate concurrent session, it landed as one commit per kernel, in
-lockstep in time, each verified independently, and the deviation was
-recorded rather than papered over.
+`leanprover/lean4:v4.35.0` (bumped from v4.34.0 on 2026-10-20; the prior
+v4.33.0 → v4.34.0 bump was 2026-09-22). Any bump moves all three kernels in
+lockstep and replays each kernel's example proofs. Where one session holds all
+three kernels the bump is a single commit covering all three pins. Where they
+are held by separate concurrent sessions it lands as one commit per held
+kernel on the same day, each verified independently, and the skew is recorded
+rather than papered over. The 2026-10-20 bump landed that second way: one
+kernel moved first, and the other two moved together under an hour later.
 
 One non-obvious hazard, stated here because it voided real work: the pin
 is read from the *current directory*. A bare compiler invocation from a
@@ -79,7 +80,7 @@ why opaque predicates must be `Prop`-valued (not `Bool`), and why
 representation guide's kernel-shape chapter starts here.
 
 Re-validate against PR #12973 — "makes theorems opaque in almost all
-ways, including in the kernel." With all three kernels now pinned to v4.34.0,
+ways, including in the kernel." With all three kernels now pinned to v4.35.0,
 a green `lake build` of each axiom set is the load-bearing post-bump
 confirmation that `Prop`-valued opaque predicates and `noncomputable`
 witnesses still reduce in def-eq the way the proofs assume. All three kernels
@@ -118,8 +119,8 @@ the witness-tower depth in the legal-domain example proof coming down.
 
 *Metaprogramming in Lean 4* Ch.3 (Expressions) → Ch.4 (MetaM) → Ch.7
 (Elaboration) → Ch.8 (Embedding DSLs By Elaboration) → Ch.9 (Tactics). The
-book is pinned to v4.17.0-rc1, sixteen minor releases behind the kernels'
-current pin and falling further behind with every bump — trust it for
+book is pinned to v4.17.0-rc1 while the kernels are on v4.35.0, and the gap
+widens with every bump — trust it for
 *shape*, verify every Meta/Elab signature against current source or Zulip.
 
 The strategic move: a `facts%` macro / custom command that consumes a
@@ -242,7 +243,10 @@ tactic now ships — core `grind` + `constructor` + `assumption` composed via
 the axiom set to the prover as tagged intro rules. It first discharges a
 hierarchical predicate decomposition, where the simple route closes by
 `constructor` and the structured route genuinely needs the tagged `grind`
-intro. The **aesop** arm stays deferred: aesop is not in core and is
+intro. Lean 4.35 began linting `constructor` when more than one constructor
+matches; the tactic's first-match arm now uses `constructor!`, which makes the
+same first-match choice without the lint, changed in all three kernels'
+byte-identical copies at once. The **aesop** arm stays deferred: aesop is not in core and is
 charter-gated the same way Mathlib is — the operational axis rejects both, so
 the explicit-`List.Mem`-chain → one-`aesop`-call payoff remains future work
 behind membership helpers #2 + codegen #3. Aesop has
@@ -326,12 +330,12 @@ enumerates the architectural surface only; the axis's memory- and
 session-substrate theorems are tracked privately and are deliberately absent
 from the public syllabus. A fourth family — the context-operations cells,
 which model what an automated agent is given to work from — landed in an
-earlier cycle, one of them on a negative result. That family's two most recent
-rounds were the first consecutive pair in some time to close without the round
-itself breaching, and the second returned a clean verdict alongside four
-conceded findings — findings remain open against it. The lane's live target has
-since moved to a newer family, which is where this cycle's adversarial movement
-comes from; see [STATUS](./STATUS.md).
+earlier cycle, one of them on a negative result. The lane ran two rounds
+this cycle on a cell held off the roster, both judged green with nothing scored against the build. Across them the
+constructive side conceded seven earlier findings and the adversary opened
+three new ones against the newest prose, so findings remain open against it.
+None of this enters the published figures, because the family is still held
+off the roster; see [STATUS](./STATUS.md).
 
 **Difficulty:** Mid–Deep.
 

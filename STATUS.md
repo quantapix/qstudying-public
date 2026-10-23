@@ -3,24 +3,25 @@
 _Snapshot: adversarial figures as of the most recent fold on any cell inside
 them, 2026-08-28. Rounds have run and folded since, all on families held off
 the roster, so none of them enters the figures below. Toolchain and method
-notes refreshed 2026-10-16. Refreshed per release run during the
+notes refreshed 2026-10-23. Refreshed per release run during the
 2026-06-01 → 2026-12-01 drive window._
 
 Release-narrative status of the Lean4 focus-area syllabus. Companion to the
 [README](./README.md), not a substitute.
 
 ## Overall
-The scoreboard did not move this cycle. Three adversarial rounds ran and
-folded. Each was the first round on its cell, and all three cells are held off
-the roster, so none of them enters a figure on this page. The count of
-families held off the roster is unchanged at ten.
+The scoreboard did not move this cycle; every figure below was re-derived from
+the tree and came out the same. Two adversarial rounds ran and folded, both on
+one cell of a family held off the roster, so neither enters a figure on this
+page. The count of families held off the roster is unchanged at ten.
 
-The changes were on the instrument side. The axis now keeps a written table of
-what each kind of change does to the evidence already on file. A check that
-could not run has stopped reporting that everything it checked was fine. Two
-claims this page had carried for weeks were also re-measured: one stands, now
-with its population stated, and one turned out to be false and is corrected
-below.
+The changes were on the instrument side, and most of them were one defect
+found five times: an instrument that executes, or pastes into its own source,
+the material it is grading. All five are cured. The toolchain moved to a new
+compiler release, and the move found a ban list naming constants that no
+longer exist and a script that located itself wrongly. Five claims carried on
+this page and the README were re-measured and corrected; four of them were
+true, or untested, when they were written.
 
 The certification badge fell from twenty of twenty-two to eighteen in an
 earlier cycle. Under the same cumulative rule, nothing since has reversed it.
@@ -38,9 +39,10 @@ one per domain, never sharing ground truth:
   structurally-synthetic snapshots, never real-tree data. Its consumer is
   local-only and only visualizes; nothing here is a deployed surface.
 
-All three pin the same Lean toolchain (`leanprover/lean4:v4.34.0`, three-way
-lockstep since the 2026-09-22 bump; bumps move all three and replay each
-kernel's example proofs).
+All three pin the same Lean toolchain (`leanprover/lean4:v4.35.0`, three-way
+lockstep since the 2026-10-20 bump; bumps move all three and replay each
+kernel's example proofs, and on this axis also replay the attack corpus through
+the judge).
 
 ## Adversarial standing
 Numbers as of this snapshot, all machine-checked by the build:
@@ -362,9 +364,9 @@ next round re-attests. **Read a ruling's declared costs as part of its text.**
 
 Two limits are stated rather than hidden. A statement that vanishes is
 reported, not gated, because renames are routine and gating them would wedge a
-fold for good. And the gate's scope is a population: 660 of 712 statement
-references resolve today. The remainder are attack-side, retired, free-text or
-ambiguous names. The baseline attests the tree as of the gate's first day, one
+fold for good. And the gate's scope is a population: when the gate landed, 660
+of 712 statement references resolved to a declaration. The remainder are
+attack-side, retired, free-text or ambiguous names. The baseline attests the tree as of the gate's first day, one
 record per example. It says nothing about drift before that.
 
 ## A decision step that exists is not coverage that holds
@@ -386,6 +388,20 @@ extractor's diagnosis, not a kernel-checked witness of an uncovered push,
 because the negative side has no closed form yet. The step is not yet wired into
 the push path it is meant to gate, and this page makes no coverage claim on the
 strength of it existing.
+
+The decision step was itself found open to its own input this cycle. It writes
+a Lean file from the extracted facts, and several values were pasted into that
+file verbatim. A committed known-bad put a line break and one extra declaration
+into a field nothing used. That declaration supplied exactly the fact the
+kernel check exists to find missing, and the step read green. Every value it
+pastes must now be an identifier from a closed set, or the step exits as not
+verifiable before any Lean is written. The verdict is no longer a substring of
+a log line either. The generated file emits one structured record of the
+proof's axiom closure, and the step admits only the axioms it declared itself,
+the kernel's own, and the three standard ones. It refuses a `sorry`, an
+undeclared axiom, and an empty closure. On every recorded input the old and new
+steps agree on the exit code, and where a decision record is produced it is
+byte-identical.
 
 The same cycle produced a second instance of the class: a model-floor check in
 the adversarial lane had been grading the *configured* model, not the model the
@@ -476,11 +492,14 @@ re-grade record from the current grader that matches the frozen file byte for
 byte. That batch re-grade has not run. The step that would write the re-grade
 records is not yet built on this axis, and no re-grade record exists anywhere
 in its tree. Measured this refresh over every frozen independence verdict in
-the tree, 46 verdicts across nine example cells: 36 read untrusted against the
-live grader, 10 predate the grader stamp and carry no grader identity, and none
-reads trusted. The on-roster cells hold three of those 46, all untrusted. None
-of them is evidence for the tier it once supported until a re-grade discharges
-it.
+the tree, 48 verdicts across nine example cells: 2 read trusted, 36 read
+untrusted against the live grader, and 10 predate the grader stamp and carry no
+grader identity. The two trusted verdicts are this cycle's two rounds, frozen
+under the grader that is live now. Nothing was re-graded to produce them, and
+they will read untrusted at the next grader change like the rest. The previous
+refresh's "none reads trusted" was true when written and is withdrawn. The
+on-roster cells hold three of those 48, all untrusted. None of the 36 is
+evidence for the tier it once supported until a re-grade discharges it.
 
 ## What a change does to the evidence already on file
 
@@ -522,6 +541,111 @@ not exist, and the previous version of the check fails that witness.
 
 **A predicate that cannot be evaluated is not a predicate that holds.** This
 page has stated the rule before. This instance was the permissive direction.
+
+## An instrument that runs inside the thing it grades
+
+Four of the axis's instruments elaborated the code under test in their own
+process: the axiom-closure probe, the statement fingerprint behind the fold
+gate, the battery of generated probes, and the judge that classifies each
+attack file. Lean runs a module's `initialize` blocks when it is imported with
+initializers enabled, so code written by a participant ran inside the
+instrument grading it. Each defect was shown red by a committed known-bad
+before it was cured. An imported initializer that printed a clean transcript
+and exited zero turned a proof containing `sorry` into a pass. Another turned
+every generated probe green and erased a real finding. A tab character in a
+declaration name shifted a record's fields, so a changed definition moved no
+fingerprint. An example missing from the import graph answered "vanished"
+instead of refusing.
+
+Three of the four are now standalone programs. Each imports only Lean itself,
+loads the compiled modules under test at run time with initializers never
+enabled, and prints structured records that end in a count the caller
+recomputes. A missing or disagreeing end record is a failure, never a pass.
+Queries that used to be spliced into generated Lean source are passed as data.
+
+The judge could not be isolated that way. Its job is to elaborate attack files
+that import the proof, a real import needs initializers, and so code from both
+sides runs in one process. Its verdict is now read only from a final record
+built from the compiler's own messages and stamped with a nonce that the judge
+reads before any imported code runs. The exit code and standard output decide
+nothing. Output with no record under the right nonce is unverified, not clean.
+One residue is recorded rather than claimed closed: a single command that
+rewrites its own message log before returning.
+
+Each cure was measured for equivalence against the instrument it replaced
+before it landed. The axiom probe gave identical closures and verdicts on all 41
+live examples. The statement fingerprint was identical on all 836 scoped
+references, so no committed record moved. The battery gave 1,041 of 1,041
+probes identical. The judge classified all 728 committed attack files the same
+way. The judge's cure roughly doubled its cost per file. Running files in
+parallel and classifying them in their original order brought one cell's full
+judge from 221 seconds back to 89, against 86 before the cure.
+
+**An instrument that executes the artifact it grades has to be shown, by a
+known-bad, that the artifact cannot write its verdict.** Agreement on every
+honest input is necessary, and it says nothing about that.
+
+## A toolchain bump is graded by the judge, not the build
+
+The kernels moved from Lean v4.34.0 to v4.35.0 on 2026-10-20. Every library and
+example built green, and on both other axes every example proof with a recorded
+verdict replayed to the same verdict. On this axis the build was not the test
+that mattered. The attack corpus was replayed through the real judge under both
+compilers, file for file, and the first pass on the new one regressed eleven
+fixtures. Lean 4.35 deleted three trust-base constants, `Lean.ofReduceBool`,
+`Lean.ofReduceNat` and `Lean.trustCompiler`, and eleven committed fixtures named
+them. This was not an audit escape. Since 4.32, `native_decide` has minted a
+per-declaration axiom instead, and the live audits already key on that shape.
+But a ban list that names a constant which no longer exists bans nothing while
+reading as armed, so the deleted names were dropped rather than kept. After
+that, all 726 attack files classified identically under both compilers.
+
+The bump did not land the way the README said bumps land. It went in as two
+commits about fifty minutes apart: one kernel moved alone first, in a session
+that held only that kernel, with the skew recorded, and the other two moved
+together. The README had stated a single commit as the rule, and the rule had
+never been exercised. It is corrected.
+
+Two smaller findings came out of the same day.
+
+- Participants launched outside the tree resolve the compiler from their own
+  working directory, which is the hazard the README names, in a new place. A
+  build that skipped the change of directory ran on the default compiler and
+  rewrote compiled artifacts shared with sibling participants. Every launcher
+  now pins the compiler from the package's own pin file and refuses to launch
+  without one.
+- The lane's main script located itself from the name it was invoked by. That
+  is right when it is executed, and right when it is sourced from zsh, and
+  wrong when it is sourced from bash. Sourced from bash during the bump's
+  re-verification, it pointed at the caller's tree, a helper failed to import,
+  and two standing sentinels were judged as landed attacks. That is a false red,
+  which is the only reason it was noticed.
+
+## A grader that cannot see the defect it was built for
+
+In recent rounds an adversary has convicted prose: sentences in a proof file's
+documentation that claimed more than the theorems beside them proved. The
+constructive side conceded each finding at the sentence. A documentation grader
+was then built. It is report-only. It checks the lead sentence of each
+proposition's docstring against the statement on two shapes: a quantifier word
+against the outermost quantifier, and a claim about one side of a paired
+constant against the side the statement actually names. It abstains, and counts
+the abstentions, where a lead is negated or names both sides. It runs a
+self-test against a labelled fixture before grading anything, and a sabotaged
+rule makes it refuse to grade at all.
+
+It was measured before it was trusted, and the measurement is the useful part.
+On the cell it was built for, it flagged 2 of about 650 docstrings, and both
+flags were false on a hand read. Over the whole tree it read 1,200 docstrings,
+34 of 41 examples came back unmeasured, and none of its 5 flags was true. Run
+against the round before the conviction, it misses the convicted sentence. That
+sentence was section prose, a module-level doc attached to no declaration, which
+the grader counts and cannot grade. The first round after the grader landed
+opened its new finding in the same kind of place.
+
+**A grader built to answer a finding should first be run on the artifact that
+produced the finding.** This one fails that test. It prints its count of
+ungraded module docs on every run instead of folding them into a clean result.
 
 ## Instruments that check themselves before they report
 A small pattern, stated because it is cheap and it has now caught three real
@@ -846,7 +970,16 @@ log is the change record.
   standing at its next fold, on 2026-08-16, and that cell is off the roster), and
   a held-off qualifier that described the previous cycle as this one. A third
   carried claim, that the verdict re-grade has not run, was re-measured and
-  stands. It now carries its population.
+  stands. It now carries its population. At the 2026-10-23 refresh, five: the
+  README's account of how a bump lands (it stated a rule that had never been
+  exercised, and the next bump did not land that way); the README's count of
+  releases between the metaprogramming book and the kernels (right at the pin
+  it was written against, wrong since the bump after, and now stated as two
+  versions instead of a derived count); the README's statement that the lane's
+  live target had moved to a newer family (it moved back); this page's
+  statement that no frozen verdict reads trusted (two now do); and this page's
+  description of a landing-day population as today's. The first four were true,
+  or untested, when written. The last was a basis error.
 
 ## Contact
 [github.com/quantapix](https://github.com/quantapix) — open an issue on any repo
