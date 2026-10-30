@@ -3,25 +3,28 @@
 _Snapshot: adversarial figures as of the most recent fold on any cell inside
 them, 2026-08-28. Rounds have run and folded since, all on families held off
 the roster, so none of them enters the figures below. Toolchain and method
-notes refreshed 2026-10-23. Refreshed per release run during the
-2026-06-01 → 2026-12-01 drive window._
+notes refreshed 2026-10-30. Refreshed per release run during the
+2026-06-01 → 2026-12-01 drive window. Sections below keep the wording of the
+refresh that added them, so "this cycle" in a section means the cycle that
+section was written in. Only the Overall section speaks for the current one._
 
 Release-narrative status of the Lean4 focus-area syllabus. Companion to the
 [README](./README.md), not a substitute.
 
 ## Overall
-The scoreboard did not move this cycle; every figure below was re-derived from
-the tree and came out the same. Two adversarial rounds ran and folded, both on
-one cell of a family held off the roster, so neither enters a figure on this
-page. The count of families held off the roster is unchanged at ten.
+The scoreboard did not move this cycle; every figure below was read from the
+current status emit and came out the same. Six adversarial rounds ran, all on
+families held off the roster, so none enters a figure on this page. One folded
+and closed its cell. The other five were refused at the fold, as the rule that
+refuses them said they would be. The count of families held off the roster is
+unchanged at ten.
 
-The changes were on the instrument side, and most of them were one defect
-found five times: an instrument that executes, or pastes into its own source,
-the material it is grading. All five are cured. The toolchain moved to a new
-compiler release, and the move found a ban list naming constants that no
-longer exist and a script that located itself wrongly. Five claims carried on
-this page and the README were re-measured and corrected; four of them were
-true, or untested, when they were written.
+The verdict re-grade this page said had not run has now run on one of two
+machines, and the grader then moved twice, so nothing it discharged is still
+discharged. No frozen verdict reads trusted today. Three defects surfaced inside
+the rounds and are filed uncured, and one of them flatters the constructive
+side. Six claims carried on this page and the README were corrected. Two of
+those were never accurate as written.
 
 The certification badge fell from twenty of twenty-two to eighteen in an
 earlier cycle. Under the same cumulative rule, nothing since has reversed it.
@@ -45,7 +48,8 @@ kernel's example proofs, and on this axis also replay the attack corpus through
 the judge).
 
 ## Adversarial standing
-Numbers as of this snapshot, all machine-checked by the build:
+Numbers as of this snapshot. The build checks the theorems. The status emit
+counts them and reads the rest from the committed round and standing records:
 
 - **106** theorems proved across the operational targets; **78** on the
   domain-coverage numerator.
@@ -56,11 +60,11 @@ Numbers as of this snapshot, all machine-checked by the build:
   independent adversary.
 
 The adversarial-damage figure this page previously published under the word
-"landed" is withheld this refresh. The instrument that produces it counts
-build entries scored for the adversarial side, once per round, so a fixture
-rebuilt in several rounds counts several times. The judge that adjudicates
-each round uses the same word for a narrower event, and on the most recent
-round the two readings disagree. This page names a basis before it publishes
+"landed" is still withheld. The instrument that produces it counts build entries
+scored for the adversarial side, once per round, so a fixture rebuilt in several
+rounds counts several times. The judge that adjudicates each round uses the same
+word for a narrower event, and on the round measured when the figure was
+withheld, the two readings disagreed. This page names a basis before it publishes
 a count.
 - **12 of 22** domain concepts covered, all at the strongest tier, none refuted.
 
@@ -369,6 +373,19 @@ of 712 statement references resolved to a declaration. The remainder are
 attack-side, retired, free-text or ambiguous names. The baseline attests the tree as of the gate's first day, one
 record per example. It says nothing about drift before that.
 
+The cost the ruling declared has now been paid. Five rounds on 2026-10-27 ran on
+cells whose kernel had moved under them, and all five folds refused, on between
+15 and 60 moved statements each. Each round still booked, because booking runs
+ahead of the fold, so its adjudication is on file and out of standing. One cell
+paid twice, because a second change landed under it between its rounds. None of
+these cells has re-attested yet, so the second half of the clock has not been
+exercised on them.
+
+The refusals also exposed a defect. The lane treats a fold as the mark of a closed
+round, so after a refused fold the next round's judge read as a re-judge of the
+last one, wrote its receipt to the wrong round, and the booking refused. Recovery
+is a recorded manual sequence. The cure is filed and has not landed.
+
 ## A decision step that exists is not coverage that holds
 
 The operational kernel models publish-time clearance: every public push that a
@@ -388,6 +405,15 @@ extractor's diagnosis, not a kernel-checked witness of an uncovered push,
 because the negative side has no closed form yet. The step is not yet wired into
 the push path it is meant to gate, and this page makes no coverage claim on the
 strength of it existing.
+
+Run over the whole ledger, that step grades every recorded push, so wired in as
+built it would have refused each new push for rows that push does not carry. That
+is a gate whose population is not the push set, and it was left unwired on that
+account. It now takes one payload. It grades only the push in hand. The proof is generated over a
+separately named ledger, so the closed ledger table stays true, and a payload with
+no ledger row gets its own exit instead of a pass. The witness is a known-bad in
+which an ungated new payload fails. The step is still not wired into any push
+path, and this page still makes no coverage claim on the strength of it.
 
 The decision step was itself found open to its own input this cycle. It writes
 a Lean file from the extracted facts, and several values were pasted into that
@@ -487,19 +513,33 @@ append-only; the archive holds evidence only.
 
 One consequence of freezing verdicts beside their rounds: when the grader
 changes, every frozen verdict it produced is marked untrusted against the live
-grader's own hash. The verdict is not re-judged in place. Discharge requires a
-re-grade record from the current grader that matches the frozen file byte for
-byte. That batch re-grade has not run. The step that would write the re-grade
-records is not yet built on this axis, and no re-grade record exists anywhere
-in its tree. Measured this refresh over every frozen independence verdict in
-the tree, 48 verdicts across nine example cells: 2 read trusted, 36 read
-untrusted against the live grader, and 10 predate the grader stamp and carry no
-grader identity. The two trusted verdicts are this cycle's two rounds, frozen
-under the grader that is live now. Nothing was re-graded to produce them, and
-they will read untrusted at the next grader change like the rest. The previous
-refresh's "none reads trusted" was true when written and is withdrawn. The
-on-roster cells hold three of those 48, all untrusted. None of the 36 is
-evidence for the tier it once supported until a re-grade discharges it.
+grader's own hash. The verdict is not re-judged in place. Discharge requires an
+appended re-grade record, from the grader that is live when the record is read,
+over the frozen file's exact bytes.
+
+That batch re-grade has now run, on one of the two machines, because a verdict can
+only be replayed where its transcripts live. The writer was built for it. Of the
+36 verdicts then untrusted, 17 were replayed and 19 await the other machine.
+Thirteen matched their frozen outcome and four did not. All four moved to a less
+severe reading under an earlier cure to how the grader resolves shell globs, and
+all four are on cells held off the roster. Two already had a correction on file,
+and the other two received one by append. No frozen file was touched. The
+producers that turn a verdict into a tier now refuse an untrusted or contradicted
+verdict by default.
+
+Then the shared grader changed twice, the first time the same day. A re-grade
+record discharges only against the grader that is live now, so all 17 records
+stopped discharging anything. The two verdicts this page last reported as trusted
+read untrusted, as the page said they would. Measured this refresh over every
+frozen independence verdict in the tree, 56 verdicts across nine example cells: 0
+read trusted, 46 read untrusted against the live grader, and 10 predate the grader
+stamp and carry no grader identity. The on-roster cells hold three of those 56, all
+untrusted. None of the 46 is evidence for the tier it once supported until a
+re-grade under the live grader discharges it.
+
+The rule is deliberate and it is expensive. The grader is shared by all three
+kernels, so a cure on any axis restarts this count. **A discharge keyed to the live
+instrument lasts until the instrument moves.**
 
 ## What a change does to the evidence already on file
 
@@ -647,6 +687,39 @@ opened its new finding in the same kind of place.
 produced the finding.** This one fails that test. It prints its count of
 ungraded module docs on every run instead of folding them into a clean result.
 
+The cell that grader was built for has since been closed. At its closing round the
+last open claim against its prose was conceded at the sentence, and the round was
+judged green. The rotation that picks each round's target now reads a list of
+closed cells and refuses one, with a witness. The closing record attributes the
+closure to a recurring generator of prose overstatement, roughly one fresh finding
+a round over its last five rounds, and not to a defect in the kernel. That is the
+record's own reading, written by the side that was conceding. The findings still
+open on the cell stay on its record permanently. The cell was on no roster, so
+none of this moves a figure here.
+
+## The rounds found the lane's own defects
+
+Two more defects, both found by adversarial participants while attacking something
+else.
+
+The judge scores a refutation as parried when the compiler reports an error and the
+expected diagnostic is among the errors. After a kernel change, a refutation's own
+statement can stop typechecking. Elaboration carries on against a placeholder, and
+the expected diagnostic can still fire on that broken goal. So the judge would report
+that the defence held, for a claim that was never stated. The error runs in the
+constructive side's favour. A participant noticed seven such files and regenerated
+them, so that round's judge never met the shape. The defect was then reproduced by
+hand and filed with a stated cure. The cure has not landed, and the committed corpus
+has not been censused for the shape.
+
+A second participant found a generated fact quantified over every value of a type,
+where every sibling fact is scoped to what extraction actually saw. From it the
+participant proved a statement about values outside the snapshot, which nothing had
+ever examined. The proofs use that fact only at snapshot values, so no proved result
+moved. It was still a claim with no evidence under it, in a package the orchestrator
+had authored that day, and the round's red verdict includes it. **A generated fact is
+scoped by what was extracted, or it asserts more than was read.**
+
 ## Instruments that check themselves before they report
 A small pattern, stated because it is cheap and it has now caught three real
 defects at first fire. Every arm of a periodic reporting check is preceded by a
@@ -762,6 +835,14 @@ this page's figures, because both are on a family held off the roster.
 The rule that keeps recurring: **key a channel rule on the channel's object,
 and pair every known-bad with a known-good.** A rule keyed on how the access
 was spelled convicts the careful caller.
+
+A fourth instance arrived with the rounds of 2026-10-27. A participant changed into
+a directory and then read allowed files by explicit path. The grader graded the
+directory as a read of a document the contract cites. Changing directory reads
+nothing, and the sibling rule for sweeps already treated that operand as an anchor.
+All five of that date's verdicts went to review on that flag. The cure records the
+directory as an anchor and grades each operand under it on its own, with controls
+that keep a real read of a cited file convicted. Those five verdicts stay as frozen.
 
 Participants are now also briefed never to read an overflow file and to re-run
 the command more narrowly instead. That instruction is right under either
@@ -948,17 +1029,21 @@ log is the change record.
 - The textual and numerical kernels are observable in the two published kernel
   repos above; the operational kernel's theorems are described here as they
   land.
-- Every count in this file is emitted by the same build that checks the proofs;
-  none of it is hand-maintained. Where a count is scoped — as the adversarial
-  scoreboard is — the scope is stated next to it rather than left to inference.
+- Every count in the adversarial standing block is read from the tree by the
+  status emit, and the build checks the theorems behind it. Every other count on
+  this page is a measurement taken when its section was written, over the
+  population that section states, and it is not re-taken unless the section says
+  so. Where a count is scoped, the scope is stated next to it rather than left to
+  inference.
 - Where a figure is stale, this file says stale rather than restating it. Where
   a figure is *convicted* — produced by an instrument since found defective —
   this file publishes nothing in its place and says why, rather than publishing
   the convicted value with a caveat attached.
 - Where two defensible bases exist for the same count, this file names both and
   says which one it publishes.
-- Every falsifiable claim on this page is re-derived against the working tree at
-  each refresh, not carried forward because it was published last week. Four
+- The Overall section, the adversarial standing block and any section a refresh
+  touches are re-derived against the working tree at that refresh. Other sections are
+  read and spot-checked, and each correction is listed here. Four
   claims were corrected on that basis at the 2026-08-28 refresh, three at the
   next, at the one after, the adversarial block itself, which had been
   published one fold behind, along with a cross-reference from the README to
@@ -980,6 +1065,16 @@ log is the change record.
   statement that no frozen verdict reads trusted (two now do); and this page's
   description of a landing-day population as today's. The first four were true,
   or untested, when written. The last was a basis error.
+  At the 2026-10-30 refresh, six: the statement that the verdict re-grade had not
+  run and that its writer did not exist; the census of frozen verdicts (two trusted,
+  now none, which the page had predicted); the README's account of the lane's latest
+  rounds; the sentence tying the withheld figure's two readings to "the most recent
+  round", which had stopped naming any fixed round; the statement that every count
+  here is emitted by the build; and the statement that every falsifiable claim is
+  re-derived at each refresh. The first three were true when written. The fourth went
+  stale by its own wording. The last two were basis errors, carried through many
+  refreshes, and no gate could have caught them: each is a universal claim that
+  contains no barred token.
 
 ## Contact
 [github.com/quantapix](https://github.com/quantapix) — open an issue on any repo

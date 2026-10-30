@@ -330,12 +330,11 @@ enumerates the architectural surface only; the axis's memory- and
 session-substrate theorems are tracked privately and are deliberately absent
 from the public syllabus. A fourth family — the context-operations cells,
 which model what an automated agent is given to work from — landed in an
-earlier cycle, one of them on a negative result. The lane ran two rounds
-this cycle on a cell held off the roster, both judged green with nothing scored against the build. Across them the
-constructive side conceded seven earlier findings and the adversary opened
-three new ones against the newest prose, so findings remain open against it.
-None of this enters the published figures, because the family is still held
-off the roster; see [STATUS](./STATUS.md).
+earlier cycle, one of them on a negative result. One of its cells, held off the roster, was retired from the
+lane's rotation this cycle after a closing round judged green. Findings remain
+open on its record and stay there. The lane has since worked other cells, also
+held off the roster, and none of that enters the published figures; see
+[STATUS](./STATUS.md).
 
 **Difficulty:** Mid–Deep.
 
